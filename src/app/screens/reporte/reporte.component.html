@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()">
+    <label for="porciones">Porciones Consumidas:</label>
+    <input type="number" id="porciones" [(ngModel)]="porciones" name="porciones">
+  
+    <label for="comentarios">Cambios en la dieta:</label>
+    <textarea id="comentarios" [(ngModel)]="comentarios" name="comentarios"></textarea>
+  
+    <button type="submit">Registrar</button>
+  </form>
+  
