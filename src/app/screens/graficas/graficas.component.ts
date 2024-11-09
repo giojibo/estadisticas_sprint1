@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 
 Chart.register(...registerables);
 
@@ -98,4 +99,37 @@ export class GraficasComponent implements OnInit{
       });
     }
   }
+  //Histograma
+  lineChartData = {
+    labels: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+    datasets: [
+      {
+        data:[68, 69, 70, 69, 69, 68, 67],
+        label: 'Registro de peso',
+        backgroundColor: 'red',
+        borderWidth: 2,
+      fill: false,
+      tension: 0
+      }
+    ]
+  }
+  lineChartOption: any = {
+    responsive: false,
+    plugins: {
+      datalabels: {
+        color: '#444',
+        anchor: 'end',
+        align: 'top'
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: false,
+        suggestedMin: 67.5,
+        suggestedMax: 70
+      }
+    }
+  };
+  
+  lineChartPlugins = [ DatalabelsPlugin ];
 }

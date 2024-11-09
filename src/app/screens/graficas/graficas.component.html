@@ -4,4 +4,14 @@
   
   <h2>Seguimiento de Porciones</h2>
   <canvas id="porcionesChart"></canvas>
+  
+  <h2>Seguimiento de peso</h2>
+    <canvas
+                    baseChart
+                    width="600"
+                    height="400"
+                    type="line"
+                    [data]="lineChartData"
+                    [options]="lineChartOption"
+                    chartType="line"></canvas>
 </div>
