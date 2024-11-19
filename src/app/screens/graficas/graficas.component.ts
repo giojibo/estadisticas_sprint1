@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 
+
 Chart.register(...registerables);
 
 @Component({
@@ -10,101 +11,83 @@ Chart.register(...registerables);
   styleUrls: ['./graficas.component.scss']
 })
 export class GraficasComponent implements OnInit{
-  
+  public chartCalorias: any;
+  public chartPorciones: any;  
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.cargarGraficaCalorias();
     this.cargarGraficaPorciones();
   }
 
-  cargarGraficaCalorias() {
-    const caloriasCanvas = document.getElementById('caloriasChart') as HTMLCanvasElement;
-    const ctx = caloriasCanvas?.getContext('2d');
-
-    // Verificar que el contexto no sea nulo
-    if (ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+  cargarGraficaCalorias(): void {
+        const data = {
+          labels: ['Consumidas', 'Restantes', 'Exedentes'],
           datasets: [
             {
-              label: 'Calorías Consumidas',
-              data: [2000, 1800, 2200, 1900, 2300, 2100, 2500],  // Datos simulados
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'Calorías Recomendadas',
-              data: [2000, 2000, 2000, 2000, 2000, 2000, 2000],  // Meta diaria
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1
+              label: 'Calorías',
+              data: [150, 50, 30], // Datos de ejemplo
+              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+              hoverOffset: 4,
             }
           ]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    }
-  }
+        };
+        const options = {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              enabled: true,
+            },
+          },
+        };
+    
+        this.chartCalorias = new Chart('chartCaloriasCanvas', {
+          type: 'doughnut', // Tipo de gráfico
+          data: data,
+          options:{},
+        });
+      }
 
-  cargarGraficaPorciones() {
-    const porcionesCanvas = document.getElementById('porcionesChart') as HTMLCanvasElement;
-    const ctx = porcionesCanvas?.getContext('2d');
-
-    // Verificar que el contexto no sea nulo
-    if (ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+      cargarGraficaPorciones(): void {
+        const data = {
+          labels: ['Consumidas', 'Faltantes', 'Excedentes'],
           datasets: [
             {
-              label: 'Porciones Consumidas',
-              data: [6, 5, 7, 6, 7, 6, 8],  // Datos simulados
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'Porciones Faltantes',
-              data: [0, 1, 0, 1, 0, 1, 0],  // Datos simulados
-              backgroundColor: 'rgba(153, 102, 255, 0.2)',
-              borderColor: 'rgba(153, 102, 255, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'Porciones Excedentes',
-              data: [0, 0, 0, 0, 1, 0, 1],  // Datos simulados
-              backgroundColor: 'rgba(255, 159, 64, 0.2)',
-              borderColor: 'rgba(255, 159, 64, 1)',
-              borderWidth: 1
+              label: 'Porciones',
+              data: [ 20, 15, 5], // Datos de ejemplo
+              backgroundColor: ['#00FF00', '#FF00FF', '#0000FF'],
+              hoverOffset: 4,
             }
           ]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    }
-  }
+        };
+    
+        const options = {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              enabled: true,
+            },
+          },
+        };
+    
+        this.chartPorciones = new Chart('chartPorcionesCanvas', {
+          type: 'doughnut', // Tipo de gráfico
+          data: data,
+          options: {},
+        });
+      }
+    
   //Histograma
   lineChartData = {
-    labels: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
     datasets: [
       {
-        data:[68, 69, 70, 69, 69, 68, 67],
+        data:[75, 72, 71, 70, 68, 69, 70, 69, 69, 68, 67, 65],
         label: 'Registro de peso',
         backgroundColor: 'red',
         borderWidth: 2,
@@ -114,7 +97,7 @@ export class GraficasComponent implements OnInit{
     ]
   }
   lineChartOption: any = {
-    responsive: false,
+    responsive: true,
     plugins: {
       datalabels: {
         color: '#444',
@@ -125,7 +108,7 @@ export class GraficasComponent implements OnInit{
     scales: {
       y: {
         beginAtZero: false,
-        suggestedMin: 67.5,
+        suggestedMin: 63,
         suggestedMax: 70
       }
     }
