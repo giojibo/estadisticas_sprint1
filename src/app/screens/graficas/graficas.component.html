@@ -1,23 +1,27 @@
 <div class="container">
-  <h2>Seguimiento de Calorías</h2>
-  <div style="display: flex; flex-direction: column; align-items: center;">
-  <div style="width: 50%; margin-bottom: 20px;">
+  <!-- Seguimiento de Calorías -->
+  <div class="chart-box">
+    <h2>Seguimiento de Calorías</h2>
     <canvas id="chartCaloriasCanvas"></canvas>
   </div>
+
+  <!-- Seguimiento de Porciones -->
+  <div class="chart-box">
     <h2>Seguimiento de Porciones</h2>
-  <div style="width: 50%; margin-bottom: 20px;">
     <canvas id="chartPorcionesCanvas"></canvas>
   </div>
-</div>
 
-  
-  <h2>Seguimiento de peso</h2>
+  <!-- Seguimiento de Peso -->
+  <div class="chart-box">
+    <h2>Seguimiento de Peso</h2>
     <canvas
-                    baseChart
-                    width="600"
-                    height="400"
-                    type="line"
-                    [data]="lineChartData"
-                    [options]="lineChartOption"
-                    chartType="line"></canvas>
+      baseChart
+      width="400"
+      height="200"
+      type="line"
+      [data]="lineChartData"
+      [options]="lineChartOption"
+      chartType="line">
+    </canvas>
+  </div>
 </div>

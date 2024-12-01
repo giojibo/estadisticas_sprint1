@@ -1,0 +1,113 @@
+<form (ngSubmit)="registrar()">
+    <label for="paciente">Paciente:</label>
+    <input id="paciente" type="text" [(ngModel)]="seguimiento.paciente" name="paciente" required />
+  
+    <label for="calorias_recomendadas">Calorías Recomendadas:</label>
+    <input id="calorias_recomendadas" type="number" [(ngModel)]="seguimiento.calorias_recomendadas" name="calorias_recomendadas" required />
+  
+    <label for="calorias_consumidas">Calorías Consumidas:</label>
+    <input id="calorias_consumidas" type="number" [(ngModel)]="seguimiento.calorias_consumidas" name="calorias_consumidas" required />
+  
+    <button type="submit">Registrar Seguimiento</button>
+  </form>
+  <br>
+  <br>
+  <form (ngSubmit)="registrar_porciones()">
+    <label for="paciente">Paciente:</label>
+    <input id="paciente" type="text" [(ngModel)]="porciones.paciente" name="paciente" required />
+  
+    <label for="calorias_recomendadas">Porciones Recomendadas:</label>
+    <input id="calorias_recomendadas" type="number" [(ngModel)]="porciones.porciones_recomendadas" name="calorias_recomendadas" required />
+  
+    <label for="calorias_consumidas">Porciones Consumidas:</label>
+    <input id="calorias_consumidas" type="number" [(ngModel)]="porciones.porciones_consumidas" name="calorias_consumidas" required />
+  
+    <button type="submit">Registrar Seguimiento</button>
+  </form>
+
+  <div>
+    <!-- Formulario individual para registrar el peso mensual -->
+    <form (ngSubmit)="onSubmit()" #pesoMensualForm="ngForm">
+      <h3>Registrar Peso Mensual</h3>
+  
+      <label for="paciente">Paciente:</label>
+      <input
+        id="paciente"
+        type="text"
+        name="paciente"
+        [(ngModel)]="registro_peso.paciente"
+        required
+        placeholder="Ingrese el nombre del paciente"
+      />
+  
+      <label for="anio">Año:</label>
+      <input
+        id="anio"
+        type="number"
+        name="anio"
+        [(ngModel)]="registro_peso.anio"
+        required
+        placeholder="Ingrese el año (e.g., 2024)"
+      />
+  
+      <label for="mes">Mes:</label>
+      <select id="mes" name="mes" [(ngModel)]="registro_peso.mes" required>
+        <option value="" disabled selected>Seleccione un mes</option>
+        <option *ngFor="let mes of meses" [value]="mes">{{ mes }}</option>
+      </select>
+  
+      <label for="peso">Peso Inicial:</label>
+      <input
+        id="peso"
+        type="number"
+        name="peso_inicial"
+        [(ngModel)]="registro_peso.peso_inicial"
+        required
+        placeholder="Ingrese el peso inicial en kg"
+      />
+  
+      <label for="calorias_recomendadas">Calorías Recomendadas:</label>
+      <input
+        id="calorias_recomendadas"
+        type="number"
+        name="calorias_recomendadas"
+        [(ngModel)]="registro_peso.calorias_recomendadas"
+        required
+        placeholder="Ingrese las calorías recomendadas"
+      />
+  
+      <label for="calorias_consumidas">Calorías Consumidas:</label>
+      <input
+        id="calorias_consumidas"
+        type="number"
+        name="calorias_consumidas"
+        [(ngModel)]="registro_peso.calorias_consumidas"
+        required
+        placeholder="Ingrese las calorías consumidas"
+      />
+  
+      <label for="calorias_excedentes">Calorías Excedentes:</label>
+      <input
+        id="calorias_excedentes"
+        type="number"
+        name="calorias_excedentes"
+        [(ngModel)]="registro_peso.calorias_excedentes"
+        placeholder="Ingrese las calorías excedentes (opcional)"
+      />
+  
+      <button type="submit" [disabled]="pesoMensualForm.invalid">
+        Registrar Peso Mensual
+      </button>
+    </form>
+  
+    <!-- Mostrar los registros actuales -->
+    <h3>Registros de Peso Mensual</h3>
+    <ul>
+      <li *ngFor="let registro of registros">
+        Paciente: {{ registro.paciente }}, Mes: {{ registro.mes }}, Año: {{ registro.anio }}, Peso Inicial: {{ registro.peso_inicial }} kg,
+        Calorías Recomendadas: {{ registro.calorias_recomendadas }}, Calorías Consumidas: {{ registro.calorias_consumidas }},
+        Calorías Excedentes: {{ registro.calorias_excedentes }}
+      </li>
+    </ul>
+  </div>
+  

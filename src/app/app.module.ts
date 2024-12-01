@@ -6,10 +6,13 @@ import { GraficasComponent } from './screens/graficas/graficas.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { RegistrarDatosComponent } from './screens/registrar-datos/registrar-datos.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegistrarDatosComponent,
     GraficasComponent,
     
   ],
@@ -17,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     NgChartsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
